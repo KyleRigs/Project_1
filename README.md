@@ -22,4 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-kyle's project 1
+kyle's project_1
+
+Learn bash
+
+ls looks for files in the directory
+
+read up more about ls
+
+get the todo list app working and (create two items on the list with exactly two same names) and a task with the one character.
+
+active record and validations learn about them
