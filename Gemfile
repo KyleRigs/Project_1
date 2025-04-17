@@ -38,6 +38,11 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  gem "rspec-core", "~> 3.4", ">= 3.4.4"
+
+  gem "rspec-rails", "~> 6.1.0" # Or the latest version
+
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
@@ -52,3 +57,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# a gem that helps with login credentials
+gem "devise"

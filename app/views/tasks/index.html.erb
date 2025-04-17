@@ -1,6 +1,4 @@
-<!-- app/views/tasks/index.html.erb -->
-
-<h1>Tasks List</h1>
+<h1 class="mb-4">Tasks List</h1>
 
 <% if @task.errors.any? %>
   <div class="alert alert-danger">
@@ -14,31 +12,83 @@
 <% end %>
 
 <% if notice %>
-  <div class="alert alert-success">
-    <%= notice %>
-  </div>
+  <div class="alert alert-success"><%= notice %></div>
 <% end %>
 
-<%= form_with(model: @task, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
+<!-- Task Form -->
+<div class="card mb-4">
+  <div class="card-header d-flex align-items-center">
+    <i class="bi bi-plus-circle me-2"></i>
+    <strong>Add a New Task</strong>
   </div>
-  <%= form.submit "Add Task", class: "btn btn-primary mt-2" %>
-<% end %>
+  <div class="card-body">
+    <%= form_with(model: @task, local: true) do |form| %>
+      <div class="row">
+        <!-- Task Name -->
+        <div class="col-md-6">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
 
-<ul class="list-group mt-4">
-  <% @tasks.each do |task| %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <%= task.name %>
-      <div class="d-flex gap-2">
-        <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-warning btn-sm' %>
-        <%= button_to 'Delete', task_path(task),
-              method: :delete,
-              data: { confirm: 'Are you sure?' },
-              form_class: 'd-inline',
-              class: 'btn btn-danger btn-sm' %>
+        <!-- Priority Dropdown -->
+        <div class="col-md-3">
+          <%= form.label :priority %>
+          <%= form.select :priority, options_for_select(['High', 'Medium', 'Low'], @task.priority), { class: 'form-select' }, class: 'priority-select' %>
+        </div>
+
+        <!-- Status Dropdown -->
+        <div class="col-md-3">
+          <%= form.label :status %>
+          <%= form.select :status, options_for_select(['Not Started', 'In Progress', 'On Hold', 'Completed'], @task.status), { class: 'form-select' }, class: 'status-select' %>
+        </div>
       </div>
-    </li>
-  <% end %>
-</ul>
+
+      <div class="mt-3 text-end">
+        <%= form.submit "Add Task", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Tasks Table -->
+<table class="table table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th>Task Name</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td>
+          <% badge_class = case task.status
+              when 'Completed' then 'bg-success'
+              when 'In Progress' then 'bg-warning text-dark'
+              when 'On Hold' then 'bg-secondary'
+              else 'bg-danger'
+            end %>
+          <span class="badge <%= badge_class %>"><%= task.status %></span>
+        </td>
+        <td>
+          <% priority_class = case task.priority
+              when 'High' then 'bg-danger'
+              when 'Medium' then 'bg-warning text-dark'
+              when 'Low' then 'bg-success'
+              else 'bg-secondary'
+            end %>
+          <span class="badge <%= priority_class %>"><%= task.priority %></span>
+        </td>
+        <td>
+          <div class="d-flex gap-2">
+            <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-warning btn-sm' %>
+            <%= button_to 'Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, form_class: 'd-inline', class: 'btn btn-danger btn-sm' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
