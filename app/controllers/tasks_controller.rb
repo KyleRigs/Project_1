@@ -1,11 +1,10 @@
-# app/controllers/tasks_controller.rb
 class TasksController < ApplicationController
   before_action :authenticate_user!  # Ensure user is logged in
   before_action :set_task, only: %i[edit update destroy]
 
   # GET /tasks
   def index
-    @tasks = current_user.tasks  # Only show tasks belonging to the current user
+    @tasks = current_user.tasks.ordered_by_priority  # Apply ordering by priority
     @task = Task.new
   end
 
