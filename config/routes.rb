@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
   # config/routes.rb
-  get '/dashboard', to: 'dashboard#index', as: 'dashboard'
+  get "/dashboard", to: "dashboard#index", as: "dashboard"
 
     resources :tasks
     root "tasks#index"  # Set the root to the tasks index page
