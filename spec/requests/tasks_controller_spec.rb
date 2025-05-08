@@ -29,7 +29,7 @@ RSpec.describe "Tasks", type: :request do
       let(:task_params) do
         { task: { name: "New Task", priority: "High", status: "Not Started", user_id: user.id } }
       end
-  
+
       it "creates a new task and redirects" do
         expect {
           post tasks_path, params: task_params
@@ -37,7 +37,7 @@ RSpec.describe "Tasks", type: :request do
         expect(response).to redirect_to(tasks_path)
       end
     end
-  end  
+  end
 
     context "with invalid parameters" do
       let(:invalid_params) { { task: { name: "", priority: "", status: "" } } }
