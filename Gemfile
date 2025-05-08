@@ -43,7 +43,7 @@ group :development, :test do
 
   gem "rspec-core", "~> 3.4", ">= 3.4.4"
 
-  gem "rspec-rails", "~> 6.1.0" # Or the latest version
+  gem "rspec-rails", "~> 8.0.0" # Or the latest version
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
