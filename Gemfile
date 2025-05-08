@@ -39,10 +39,11 @@ group :development, :test do
 
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
+  gem "factory_bot_rails"
+
   gem "rspec-core", "~> 3.4", ">= 3.4.4"
 
   gem "rspec-rails", "~> 6.1.0" # Or the latest version
-
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
@@ -56,8 +57,9 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  # a gem that helps with login credentials
   gem "selenium-webdriver"
 end
 
-# a gem that helps with login credentials
+gem "byebug", "~> 12.0"
 gem "devise"

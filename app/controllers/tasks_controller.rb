@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "Task was successfully created."
     else
-      @tasks = current_user.tasks  # Display only the user's tasks on failure
+      @tasks = current_user.tasks.reload # Display only the user's tasks on failure
       render :index, status: :unprocessable_entity
     end
   end

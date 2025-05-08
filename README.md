@@ -51,3 +51,5 @@ add users (loging in , showing items to user) (login capabilities where they can
 read more about about migrations
 
 still try with the ci (postgres)
+
+turbo,hotwire,ci,controller test
