@@ -41,7 +41,7 @@ group :development, :test do
 
   gem "factory_bot_rails"
 
-  gem "rspec-core", "~> 3.4", ">= 3.4.4"
+  gem "rspec-core", "~> 3.13"
 
   gem "rspec-rails", "~> 8.0.0" # Or the latest version
 
